@@ -1,0 +1,50 @@
+{
+  "manifest_version": 3,
+  "name": "Learning Grass - 강의 학습 잔디",
+  "version": "0.1.12",
+  "description": "강의 시청 시간을 자동 기록하고 GitHub 스타일 학습 잔디와 타임라인으로 보여줍니다.",
+  "permissions": [
+    "storage",
+    "tabs",
+    "alarms",
+    "scripting",
+    "sidePanel"
+  ],
+  "host_permissions": [
+    "https://*.knou.ac.kr/*",
+    "https://*.inflearn.com/*",
+    "https://*.udemy.com/*"
+  ],
+  "optional_host_permissions": [
+    "https://*/*",
+    "http://*/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_title": "Learning Grass"
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://*.knou.ac.kr/*",
+        "https://*.inflearn.com/*",
+        "https://*.udemy.com/*"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "run_at": "document_idle",
+      "all_frames": true
+    }
+  ],
+  "side_panel": {
+    "default_path": "dashboard.html"
+  }
+}
